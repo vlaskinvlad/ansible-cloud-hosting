@@ -1,18 +1,18 @@
 ---
 # Common roles for all hosts
 
-- name: configures apt sources
-  template: 
-    src: sources.list.j2
-    dest: /etc/apt/sources.list
-    owner: root
-    group: root
+#- name: configures apt sources
+#  template:
+#    src: sources.list.j2
+#    dest: /etc/apt/sources.list
+#    owner: root
+#    group: root
 
 
-- name: 'updates apt cache & upgrades dist'
-  apt: 
-    upgrade: 'yes'
-    update_cache: 'yes'
+#- name: 'updates apt cache & upgrades dist'
+#  apt:
+#    upgrade: 'yes'
+#    update_cache: 'yes'
 
 
 - name: installs the necessary software

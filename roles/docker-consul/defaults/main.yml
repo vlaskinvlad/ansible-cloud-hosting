@@ -1,6 +1,6 @@
 ---
 
-docker_consul_image: 'progrium/consul:latest'
+docker_consul_image: 'progrium/consul'
 
 docker_consul_tls_dir: '/etc/consul/ssl/'
 docker_consul_tls_ca_cert_file: '/etc/consul/ssl/ca.cert'

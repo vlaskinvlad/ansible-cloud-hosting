@@ -6,7 +6,7 @@
 #
 
 PRIVATE_KEY=~/.ssh/id_rsa
-SWARM_IP=178.62.232.38:8000
+SWARM_IP=13.74.185.45:8000
 CA_CERTS_DIR=certs/ca
 CONSUL_CERTS_DIR=certs/consul
 DOCKER_CERTS_DIR=certs/docker

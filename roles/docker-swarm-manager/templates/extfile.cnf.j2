@@ -1,2 +1,2 @@
-subjectAltName = IP:{{ ansible_eth0.ipv4.address }},IP:127.0.0.1
+subjectAltName = IP:{{ ansible_eth0.ipv4.address }},IP:127.0.0.1,IP:{{ docker_swarm_external_ip }}
 extendedKeyUsage = clientAuth,serverAuth

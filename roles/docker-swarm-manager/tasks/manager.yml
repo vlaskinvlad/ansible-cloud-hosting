@@ -60,7 +60,7 @@
     docker_api_version: '{{ docker_api_version }}'
     image: '{{ docker_swarm_manager_image }}'
     ports:
-      - '{{ ansible_eth0.ipv4.address }}:8000:2375'
+      - '{{ docker_swarm_advertising_ip }}:8000:2375'
     volumes:
       # tls
       - '{{ docker_swarm_tls_dir }}:{{ docker_swarm_tls_dir }}'
