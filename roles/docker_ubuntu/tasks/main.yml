@@ -68,6 +68,8 @@
     - Restart docker
   when: docker_opts != "" and ansible_distribution_version|version_compare(15.04, '>=')
 
+- include: tls.yml
+
 - name: Ensure docker daemon options used (systemd)
   lineinfile:
     dest: /lib/systemd/system/docker.service
@@ -182,3 +184,19 @@
 - name: update facts if docker0 is not defined
   action: setup
   when: ansible_docker0 is not defined
+
+
+
+#- name: creates directory for configuration file
+#  file:
+#    state: directory
+#    path: '/etc/systemd/system/docker.service.d/'
+#
+#
+#- name: uploads docker configuration file
+#  template:
+#    src: 'docker.conf.j2'
+#    dest: '/etc/systemd/system/docker.service.d/docker.conf'
+#  notify:
+#    - 'daemon-reload'
+#    - 'Restart docker'

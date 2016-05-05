@@ -14,3 +14,7 @@
 
 - name: Restart dockerio
   service: name=docker.io state=restarted
+
+
+- name: daemon-reload
+  command: 'systemctl daemon-reload'

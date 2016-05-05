@@ -1,2 +1,23 @@
-subjectAltName = IP:{{ ansible_eth0.ipv4.address }},IP:127.0.0.1,IP:{{ docker_swarm_external_ip }}
+[req]
+req_extensions = v3_req
+
+[ v3_req ]
+
+# Extensions to add to a certificate request
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 extendedKeyUsage = clientAuth,serverAuth
+subjectAltName = @alt_names
+
+[alt_names]
+IP.1 = 127.0.0.1
+IP.2 = {{ ansible_eth0.ipv4.address }}
+{% set count = 3 %}
+{% for host in groups['dc1-cloud'] %}
+IP.{{ count }} = {{ host }}
+{% set count = count + 1 %}
+{% endfor %}
+DNS.1 = *.locarta.co
+DNS.2 = *.docker.locarta.co
+DNS.3 = *.pointwise.co
+DNS.4 = *.docker.pointwise.co

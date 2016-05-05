@@ -2,4 +2,8 @@
 - name: Run docker.ubuntu
   hosts: docker
   roles:
-      - docker_ubuntu
+      #- docker_ubuntu
+      #- { role: 'docker-consul', tags: ['docker-consul'] }
+      # - { role: 'docker-consul-registrator', tags: ['docker-consul-registrator'] }
+      #- { role: 'docker-swarm', tags: ['docker-swarm'] }
+      - { role: 'docker-swarm-manager', tags: ['docker-swarm-manager'] }

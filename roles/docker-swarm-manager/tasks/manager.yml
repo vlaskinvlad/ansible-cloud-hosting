@@ -46,7 +46,7 @@
 
 
 - name: generates certificate
-  command: 'openssl x509 -req -days 365 -sha256 -in {{ docker_swarm_tls_dir }}/client.csr -CA {{ docker_swarm_tls_ca_cert_file }} -CAkey {{ docker_swarm_tls_ca_key_file }} -CAcreateserial -out {{ docker_swarm_tls_client_cert_file }} -extfile {{ docker_swarm_tls_dir }}/extfile.cnf -passin "pass:{{ certs_ca_password }}"'
+  command: 'openssl x509 -req -days 365 -sha256 -in {{ docker_swarm_tls_dir }}/client.csr -CA {{ docker_swarm_tls_ca_cert_file }} -CAkey {{ docker_swarm_tls_ca_key_file }} -CAcreateserial -out {{ docker_swarm_tls_client_cert_file }} -extensions v3_req  -extfile {{ docker_swarm_tls_dir }}/extfile.cnf -passin "pass:{{ certs_ca_password }}"'
   args:
     chdir: '{{ docker_swarm_tls_dir }}'
     creates: '{{ docker_swarm_tls_client_cert_file }}'
@@ -60,7 +60,7 @@
     docker_api_version: '{{ docker_api_version }}'
     image: '{{ docker_swarm_manager_image }}'
     ports:
-      - '{{ docker_swarm_advertising_ip }}:8000:2375'
+      - '8000:2375'
     volumes:
       # tls
       - '{{ docker_swarm_tls_dir }}:{{ docker_swarm_tls_dir }}'

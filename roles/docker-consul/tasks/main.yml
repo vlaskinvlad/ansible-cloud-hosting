@@ -58,8 +58,10 @@
       # Used by all agents to handle RPC from the CLI (TCP only).
       - '{{ ansible_eth0.ipv4.address }}:8400:8400'
       # Used by clients to talk to the HTTP/HTTPS API (TCP only).
-      - '{{ ansible_eth0.ipv4.address }}:8500:8500'
-      - '{{ ansible_eth0.ipv4.address }}:8543:8543'
+      # - '{{ ansible_eth0.ipv4.address }}:8500:8500'
+      # - '{{ ansible_eth0.ipv4.address }}:8543:8543'
+      - '8500:8500'
+      - '8543:8543'
       # Used to resolve DNS queries (TCP? and UDP).
       - '{{ ansible_docker0.ipv4.address }}:53:53/tcp'
       - '{{ ansible_docker0.ipv4.address }}:53:53/udp'

@@ -1,4 +1,10 @@
 ---
+
+docker_tls_dir: '/etc/docker/tls'
+docker_tls_ca_cert_file: '/etc/docker/tls/ca.pem'
+docker_tls_ca_key_file: '/etc/docker/tls/ca-key.pem'
+docker_tls_server_cert_file: '/etc/docker/tls/server-cert.pem'
+docker_tls_server_key_file: '/etc/docker/tls/server-key.pem'
 # docker-engine is the default package name
 docker_pkg_name: docker-engine
 docker_apt_cache_valid_time: 600
@@ -20,11 +26,24 @@ apt_repository: deb https://apt.dockerproject.org/repo ubuntu-{{ ansible_distrib
 #  -H unix://
 #  -H tcp://0.0.0.0:2375
 #  --log-level=debug
-docker_opts: ""
+
+docker_opts: >
+  --dns 172.17.0.1
+  --dns 8.8.8.8
+  --dns-search service.consul
+  --userland-proxy=false
+  -H tcp://0.0.0.0:2376
+  -H unix:///var/run/docker.sock
+  --tlsverify
+  --tlscacert={{ docker_tls_ca_cert_file }}
+  --tlscert={{ docker_tls_server_cert_file }}
+  --tlskey={{ docker_tls_server_key_file }}
+  --log-level=info
+
 # List of users to be added to 'docker' system group (disabled by default)
 # SECURITY WARNING: 
 # Be aware that granted users can easily get full root access on the docker host system!
-docker_group_members: []
+docker_group_members: ["ubuntu"]
 # Versions for the python packages that are installed installed
 pip_version_pip: latest
 pip_version_setuptools: latest
