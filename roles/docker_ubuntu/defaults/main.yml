@@ -34,11 +34,15 @@ docker_opts: >
   --userland-proxy=false
   -H tcp://0.0.0.0:2376
   -H unix:///var/run/docker.sock
+  --cluster-store=consul://{{ ansible_eth0.ipv4.address }}:8500
   --tlsverify
   --tlscacert={{ docker_tls_ca_cert_file }}
   --tlscert={{ docker_tls_server_cert_file }}
   --tlskey={{ docker_tls_server_key_file }}
   --log-level=info
+  {% for group in group_names %}
+  --label "g_"{{ group }}"=1"
+  {% endfor %}
 
 # List of users to be added to 'docker' system group (disabled by default)
 # SECURITY WARNING: 

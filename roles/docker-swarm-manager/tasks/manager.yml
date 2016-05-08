@@ -66,7 +66,7 @@
       - '{{ docker_swarm_tls_dir }}:{{ docker_swarm_tls_dir }}'
     hostname: '{{ ansible_hostname }}'
     name: docker-swarm-manager
-    command: 'manage --tlsverify --tlscacert={{ docker_swarm_tls_ca_cert_file }} --tlscert={{ docker_swarm_tls_client_cert_file }} --tlskey={{ docker_swarm_tls_client_key_file }} consul://{{ ansible_eth0.ipv4.address }}:8500/swarm'
+    command: 'manage --strategy {{ docker_swarm_scheduling_strategy }} --tlsverify --tlscacert={{ docker_swarm_tls_ca_cert_file }} --tlscert={{ docker_swarm_tls_client_cert_file }} --tlskey={{ docker_swarm_tls_client_key_file }} consul://{{ ansible_eth0.ipv4.address }}:8500/swarm'
     state: started
     # will be checked for a newer version of the image each time the task executes
     pull: always

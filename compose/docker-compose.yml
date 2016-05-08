@@ -1,0 +1,36 @@
+version: "2"
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "80"
+    networks:
+      - my-net
+    dns:
+      - 172.17.0.1
+      - 8.8.8.8
+    dns_search:
+      - service.consul
+
+  redis:
+    image: redis:latest
+
+    ports:
+      - "6379"
+
+    environment:
+      - constraint:g_ram_high==1
+
+    labels:
+      - "env=test"
+      - "service=redis"
+      - "version=c3ed0d2c"
+
+    networks:
+      - my-net
+
+networks:
+  my-net:
+    external: true
+

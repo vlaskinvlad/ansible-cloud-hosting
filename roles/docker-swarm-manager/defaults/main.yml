@@ -4,6 +4,10 @@ docker_swarm_manager_image: 'swarm:latest'
 docker_swarm_advertising_ip: '0.0.0.0'
 docker_swarm_external_ip: '13.74.185.45'
 
+# read more about strategies here:
+# https://docs.docker.com/swarm/scheduler/strategy/
+docker_swarm_scheduling_strategy: "spread"
+
 
 docker_swarm_tls_enabled: yes
 docker_swarm_tls_dir: '/etc/docker/ssl'

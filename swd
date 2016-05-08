@@ -1,0 +1,8 @@
+#! /bin/zsh
+PRIVATE_KEY=~/.ssh/id_rsa
+SWARM_IP=13.74.185.45:8000
+CA_CERTS_DIR=certs/ca
+CONSUL_CERTS_DIR=certs/consul
+DOCKER_CERTS_DIR=certs/docker
+
+docker -H tcp://${SWARM_IP} --tlsverify=true --tlscacert=${CA_CERTS_DIR}/ca.pem --tlscert=${DOCKER_CERTS_DIR}/cert.pem --tlskey=${DOCKER_CERTS_DIR}/key.pem $@ 
